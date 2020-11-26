@@ -1,11 +1,11 @@
 use std::ops;
 use std::fmt;
 
-#[derive(Debug, Default, PartialEq)]
+#[derive(Debug, Default, PartialEq, Clone, Copy)]
 pub struct Vec3 {
-    x: f32,
-    y: f32,
-    z: f32
+    pub x: f32,
+    pub y: f32,
+    pub z: f32
 }
 
 pub type Color = Vec3;
@@ -63,6 +63,15 @@ impl ops::Div<f32> for Vec3 {
     }
 }
 
+impl ops::Neg for Vec3 {
+    type Output = Vec3;
+
+    fn neg(self) -> Self::Output {
+        Vec3::new(-self.x, -self.y, -self.z)
+
+    }
+}
+
 pub fn dot(u: &Vec3, v: &Vec3) -> f32 {
     u.x * v.x + u.y * v.y + u.z * v.z 
 }
@@ -76,6 +85,8 @@ pub fn cross(u: &Vec3, v: &Vec3) -> Vec3 {
 pub fn unit_vector(v: Vec3) -> Vec3 {
     v / v.len()
 }
+
+
 mod tests {
     use super::*;
 

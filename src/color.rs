@@ -1,18 +1,10 @@
 use std::fmt;
-
-pub struct Color {
-    r: f32,
-    g: f32,
-    b: f32
-}
-
+use crate::vec::Vec3;
+pub type Color = Vec3;
 impl fmt::Display for Color {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{} {} {}", self.r * 255.999, self.g * 255.999, self.b * 255.999)
+        write!(f, "{} {} {}", (self.x * 255.999) as i32,
+                              (self.y * 255.999) as i32, 
+                              (self.z * 255.999) as i32)
     }
-}
-
-impl Color {
-    pub fn new(r: f32, g: f32, b:f32) -> Self {
-        Self {r, g, b}
 }
